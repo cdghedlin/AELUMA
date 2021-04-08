@@ -1,0 +1,53 @@
+ Incorporated Research Institutions for Seismology (IRIS)
+ Data Management Center (DMC)
+ Data Products Team
+ AELUMA installation notes
+
+ 2017-01-10
+
+-------------------------------------------------------------------------------------------------------------------------
+Copyright (c) 2017, Catherine D. de Groot-Hedlin and Michael A.H. Hedlin
+All rights reserved (see AELUMA_license.txt).
+
+ DESCRIPTION:
+
+AELUMA (Automated Event Location Using a Mesh of Arrays) is a new detection and location method, developed by de Groot-Hedlin and Hedlin (2015). 
+This algorithm allows division of a sufficiently dense network such as the Transportable Array (TA) component of the USArray/EarthScope project into a mesh of three-element arrays (triads). 
+
+This software bundle is a modified version of the original code and utilizes irisFetch Matlab library (http://ds.iris.edu/ds/nodes/dmc/software/downloads/irisfetch.m/)  that allows seamless access to data stored within the IRIS-DMC via FDSN services.
+
+Install the bundle and the needed packages as described below:
+
+PACKAGES:
+    MATLAB: https://www.mathworks.com/
+       - this bundle was tested under MATLAB R2014a
+
+BUNDLE INSTALLATION:
+    - untar the bundle where you want to install
+    - if desired, modify the shared parameter file bin/AELUMA_shared.m and set the necessary paths
+2017
+    - the AELUMA approach to finding seismic events is a 2 step process:
+               Triad_detections reads data , forms envelopes & does triad analysis 
+                               for all time windows with envelopes with  maximum values > snrcut
+               Triad_locateSources  reads the output from Triad_detections and organizes
+                              triad detections into common events and finds source parameters
+      parameters to control the above two steps are in Triad_param1.m and  Triad_param2.m files respectably.
+
+2020 - Updated to include array data (package now called AELUMA+)
+	       Array_detections reads data at arrays, & does array analysis for each time window 
+               Array_locateSources  reads the output from Array_detections and organizes
+                          the detections into common events and finds source parameters
+      parameters to control the above two steps are in Array_param1.m and  Array_param2.m files respectably.
+
+there is also an option to combine the array and single station data. See the user manual (AELUMA_userManual.pdf)
+
+REFERENCES:
+application to infrasound data
+- Catherine D. de Groot-Hedlin and Michael A.H. Hedlin, 2015, A method for detecting and locating geophysical events using groups of arrays, 
+  Geophys. J. Int. 2015 203: 960-971,doi:10.1093/gji/ggv345.
+
+application to seismic data
+de Groot-Hedlin, C. D. & Hedlin, M. A., 2018. A new automated approach to detecting and locating seismic events using data from a large network, Bull. Seism. Soc. Am., DOI: 10.1785/0120180072.
+
+application to seismic surface wave data
+Fan, W., de Groot-Hedlin, C.D., Hedlin, M.A.H.,, Zhitu M., 2018, Using surface waves recorded by a large mesh of three-element arrays to detect and locate disparate seismic sources, Geophys. J. Int., 215, 942-958,  https://doi.org/10.1093/gji/ggy316. 
